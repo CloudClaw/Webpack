@@ -5,6 +5,10 @@ import Png from '../assets/1.png';
 import Jpg from '../assets/2.jpg';
 import Chicken from '../assets/3.svg';
 
+function TODO(a:number) {
+    console.log('TODO');
+}
+
 export const App = () => {
     const [count, setCount] = React.useState<number>(0);
 
@@ -15,6 +19,16 @@ export const App = () => {
     const decrement = () => {
         setCount((prev) => prev - 1);
     };
+
+    // TODO('test');
+
+    // if(__PLATFORM__ === 'desktop') {
+    //     return <div>Desktop</div>
+    // }
+
+    // if(__PLATFORM__ === 'mobile') {
+    //     return <div>Mobile</div>
+    // }
 
     return (
         <div>

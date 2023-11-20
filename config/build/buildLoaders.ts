@@ -1,6 +1,7 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { ModuleOptions } from "webpack";
 import { BuildOptions } from "./types";
+import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     const isDev = options.mode === "development";
@@ -24,7 +25,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
                     svgConfig: {
                         plugins: [
                             {
-                                //Что бы цвет брался от родителя, а не приходилось каждому 
+                                //Что бы цвет брался от родителя, а не приходилось каждому
                                 // элементу svg добавлять св-во fill (Возможно не работает, если у svg нет цветовых свойств)
                                 name: "convertColors",
                                 params: {
@@ -58,7 +59,19 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
 
     const tsLoader = {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: [
+            {
+                loader: "ts-loader",
+                options: {
+                    //Если хотим, что бы проверка на типы не делалась при сборке
+                    transpileOnly: true,
+                    //Чтобы работал react fast refresh
+                    getCustomTransformers: () => ({
+                        before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+                    }),
+                },
+            },
+        ],
         exclude: /node_modules/,
     };
 

@@ -6,12 +6,16 @@
   "scripts": {
     "build:dev": "webpack --env mode=development port=4000",
     "build:prod": "webpack --env mode=production port=4000",
-    "start": "webpack serve"
+    "build:mobile": "webpack --env mode=production port=4000 --env platform=mobile",
+    "build:desktop": "webpack --env mode=production port=4000 --env platform=desktop",
+    "start": "webpack serve",
+    "typecheck": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.9.0",
     "@types/react": "^18.2.37",
@@ -20,8 +24,11 @@
     "@types/webpack-bundle-analyzer": "^4.6.3",
     "@types/webpack-dev-server": "^4.7.2",
     "css-loader": "^6.8.1",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
+    "react-refresh": "^0.14.0",
+    "react-refresh-typescript": "^2.0.9",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
